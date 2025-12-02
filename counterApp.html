@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6dd5fa, #ffffff);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            background: white;
+            width: 350px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #value {
+            font-size: 60px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #222;
+        }
+
+        .btns {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .inc {
+            background: #28a745;
+            color: white;
+        }
+        .inc:hover {
+            background: #218838;
+        }
+
+        .dec {
+            background: #dc3545;
+            color: white;
+        }
+        .dec:hover {
+            background: #c82333;
+        }
+
+        .reset {
+            background: #007bff;
+            color: white;
+        }
+        .reset:hover {
+            background: #0069d9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Counter App</h2>
+        <div id="value">0</div>
+
+        <div class="btns">
+            <button class="dec">- Decrement</button>
+            <button class="reset">Reset</button>
+            <button class="inc">+ Increment</button>
+        </div>
+    </div>
+
+    <script>
+        let count = 0;
+        const value = document.getElementById("value");
+
+        document.querySelector(".inc").addEventListener("click", () => {
+            count++;
+            value.textContent = count;
+        });
+
+        document.querySelector(".dec").addEventListener("click", () => {
+            count--;
+            value.textContent = count;
+        });
+
+        document.querySelector(".reset").addEventListener("click", () => {
+            count = 0;
+            value.textContent = count;
+        });
+    </script>
+</body>
+</html>
