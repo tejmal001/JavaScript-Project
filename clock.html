@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        /* From digiclock.css */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #111;
+            color: #00ffea;
+            font-family: 'Courier New', monospace;
+            font-size: 50px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #clock {
+            padding: 20px 40px;
+            border: 2px solid #00ffea;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 234, 0.5);
+            text-shadow: 0 0 10px rgba(0, 255, 234, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div id="clock"></div>
+
+    <script>
+        // From digitalClock.js
+        function showTime() {
+            let time = new Date();
+            let hrs = time.getHours();
+            let min = time.getMinutes();
+            let sec = time.getSeconds();
+
+            // Add leading zero
+            hrs = (hrs < 10) ? "0" + hrs : hrs;
+            min = (min < 10) ? "0" + min : min;
+            sec = (sec < 10) ? "0" + sec : sec;
+
+            document.getElementById("clock").innerHTML = `${hrs}:${min}:${sec}`;
+        }
+
+        // Update every second
+        setInterval(showTime, 1000);
+        showTime();
+    </script>
+</body>
+</html>
