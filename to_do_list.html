@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced To-Do List App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #dfe9f3, #ffffff);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 380px;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        #taskInput {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+            font-size: 14px;
+        }
+
+        #addBtn {
+            padding: 10px 15px;
+            background: #28a745;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        #addBtn:hover {
+            background: #218838;
+        }
+
+        ul {
+            margin-top: 20px;
+            padding: 0;
+        }
+
+        li {
+            background: #f2f2f2;
+            padding: 10px;
+            margin-bottom: 10px;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .delete {
+            background: #dc3545;
+            border: none;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .delete:hover {
+            background: #c82333;
+        }
+
+        .empty {
+            text-align: center;
+            color: gray;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>To-Do List</h2>
+
+        <div class="input-area">
+            <input id="taskInput" placeholder="Enter your task..." />
+            <button id="addBtn">Add</button>
+        </div>
+
+        <ul id="taskList"></ul>
+        <p id="emptyMsg" class="empty">No tasks added yet</p>
+    </div>
+
+    <script>
+        let tasks = [];
+
+        const taskInput = document.getElementById("taskInput");
+        const taskList = document.getElementById("taskList");
+        const emptyMsg = document.getElementById("emptyMsg");
+
+        function updateEmptyMessage() {
+            emptyMsg.style.display = tasks.length === 0 ? "block" : "none";
+        }
+
+        document.getElementById("addBtn").addEventListener("click", function () {
+            let task = taskInput.value.trim();
+            if (task === "") return;
+
+            tasks.push(task);
+
+            let li = document.createElement("li");
+            li.textContent = task;
+
+            let del = document.createElement("button");
+            del.textContent = "Delete";
+            del.className = "delete";
+
+            del.addEventListener("click", function () {
+                let index = tasks.indexOf(task);
+                tasks.splice(index, 1);
+                li.remove();
+                updateEmptyMessage();
+            });
+
+            li.appendChild(del);
+            taskList.appendChild(li);
+
+            taskInput.value = "";
+            updateEmptyMessage();
+        });
+
+        updateEmptyMessage();
+    </script>
+</body>
+</html>
